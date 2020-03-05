@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FishTraceability</string>
+    <string name="title_activity_show_data">ShowDataActivity</string>
+</resources>

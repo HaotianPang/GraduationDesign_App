@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.UserCenterActivity">
+
+    <TextView
+        android:id="@+id/tx_uc_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:text="水产品养殖溯源"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.405"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_uc_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="version:1.0"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/tx_uc_name"
+        app:layout_constraintTop_toBottomOf="@+id/tx_uc_name" />
+
+    <Button
+        android:id="@+id/btn_uc_rm"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="88dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="32dp"
+        android:background="#82E67F"
+        android:drawableTop="@mipmap/icon_rm"
+        android:text="原料溯源"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/btn_uc_pbtrace"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="88dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="32dp"
+        android:background="#F52F68"
+        android:drawableTop="@mipmap/icon_serch"
+        android:text="公共溯源"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/btn_uc_factory"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="88dp"
+        android:layout_height="89dp"
+        android:background="#0179DB"
+        android:drawableTop="@mipmap/icon_factory"
+        android:text="加工阶段"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_uc_rm"
+        app:layout_constraintStart_toEndOf="@+id/btn_uc_pbtrace"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="412dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
