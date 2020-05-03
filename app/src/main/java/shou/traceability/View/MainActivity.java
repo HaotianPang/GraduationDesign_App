@@ -58,8 +58,6 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
                         .build();
                 tokenpresenter.doRequest(body);
             }
-////
-//            toLogin();
         }else{
             EasyPermissions.requestPermissions(this,
                     "需要赋予权限来保证程序正常运行",PERMISSION_GRANTED,permissions);

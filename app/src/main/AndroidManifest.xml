@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.QRCodeActivity"></activity>
+        <activity android:name=".View.ChoseActivity"></activity>
+        <activity android:name=".View.QRCodeActivity" />
         <activity android:name=".View.UserCenterActivity" />
         <activity android:name=".View.LoginActivity" />
         <activity android:name=".View.ShowDataActivity" />

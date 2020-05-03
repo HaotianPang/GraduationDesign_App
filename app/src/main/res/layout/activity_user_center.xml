@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="version:1.0"
+        android:text="区块链版"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tx_uc_name"
         app:layout_constraintTop_toBottomOf="@+id/tx_uc_name" />

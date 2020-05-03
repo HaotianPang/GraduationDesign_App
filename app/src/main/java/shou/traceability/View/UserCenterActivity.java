@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -22,12 +23,20 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
 
     private static final int QR_SCAN_FACTORY=1;
     private int selectionIndex=0;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_center);
         initComponent();
+        Intent intent=getIntent();
+        int kinds=intent.getIntExtra("kinds",1);
+        if(kinds==1){
+            textView.setText("区块链版");
+        }else{
+            textView.setText("非区块链版");
+        }
     }
 
     @Override
@@ -36,7 +45,6 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
             case R.id.btn_uc_factory:
                 selectionIndex= ConstantUtil.INDEX_FAC;
                 scanQRCode();
-
                 break;
             case R.id.btn_uc_pbtrace:
                 //二维码测试
@@ -47,9 +55,8 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
 //                selectionIndex= ConstantUtil.INDEX_ORI;
 //                scanQRCode();
                 //生成二维码
-                Intent intent=new Intent();
-                intent.setClass(UserCenterActivity.this,QRCodeActivity.class);
-                startActivity(intent);
+                selectionIndex=ConstantUtil.INDEX_ORI;
+                scanQRCode();
                 break;
         }
     }
@@ -62,6 +69,7 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
         btn_uc_factory.setOnClickListener(this);
         Button btn_uc_rm=(Button)findViewById(R.id.btn_uc_rm);
         btn_uc_rm.setOnClickListener(this);
+        textView=(TextView)findViewById(R.id.tv_uc_version);
     }
 
     @Override
@@ -71,18 +79,29 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
         // 扫描二维码/条码回传
         if (requestCode == QR_SCAN_FACTORY && resultCode == RESULT_OK) {
             if (data != null) {
+                String content=new String();
+                QueryPresenter presenter=new QueryPresenter(ConstantUtil.QUERY_FAC,UserCenterActivity.this);
                 switch (selectionIndex){
                     case ConstantUtil.INDEX_FAC:
-                        String content = data.getStringExtra(Constant.CODED_CONTENT);
-                        QueryPresenter presenter=new QueryPresenter(ConstantUtil.QUERY_FAC,UserCenterActivity.this);
-                        RequestBody body=new FormBody.Builder()
-                                .add("id",content)
-                                .build();
-                        presenter.doRequest(body);
+                        content = data.getStringExtra(Constant.CODED_CONTENT);
+                        presenter=new QueryPresenter(ConstantUtil.QUERY_FAC,UserCenterActivity.this);
                         selectionIndex=0;
-                    break;
-
+                        break;
+                    case ConstantUtil.INDEX_ORI:
+                        content=data.getStringExtra(Constant.CODED_CONTENT);
+                        presenter=new QueryPresenter(ConstantUtil.QUERY_ORI,UserCenterActivity.this);
+                        selectionIndex=0;
+                        break;
+                    case ConstantUtil.INDEX_PUB:
+                        content=data.getStringExtra(Constant.CODED_CONTENT);
+                        presenter=new QueryPresenter(ConstantUtil.QUERY_PUB,UserCenterActivity.this);
+                        selectionIndex=0;
+                        break;
                 }
+                RequestBody body=new FormBody.Builder()
+                        .add("id",content)
+                        .build();
+                presenter.doRequest(body);
 //                String content = data.getStringExtra(ConstantUtil.CODED_CONTENT);
 //                Toast.makeText(this, "扫描的结果是："+content, Toast.LENGTH_SHORT).show();
             }

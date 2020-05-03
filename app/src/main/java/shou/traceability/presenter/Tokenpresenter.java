@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import shou.traceability.View.ChoseActivity;
 import shou.traceability.View.LoginActivity;
 import shou.traceability.View.MainActivity;
 import shou.traceability.View.UserCenterActivity;
@@ -34,7 +35,7 @@ public class Tokenpresenter extends BasePresenter {
         editor.putString("token", token.getToken());
         if (editor.commit()) {
             Intent intent = new Intent();
-            intent.setClass(activity, UserCenterActivity.class);
+            intent.setClass(activity, ChoseActivity.class);
             activity.startActivity(intent);
             activity.finish();
         } else {
